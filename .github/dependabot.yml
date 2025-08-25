@@ -3,10 +3,15 @@ updates:
 - package-ecosystem: bundler
   directory: "/"
   schedule:
-    interval: daily
+    interval: weekly
   open-pull-requests-limit: 10
+  cooldown:
+    default-days: 15
+    semver-major-days: 45
+    semver-minor-days: 30
+    semver-patch-days: 15
 - package-ecosystem: github-actions
   directory: "/"
   schedule:
-    interval: daily
+    interval: weekly
   open-pull-requests-limit: 10
