@@ -1,0 +1,81 @@
+This document describes the design of the Flexbase application.
+
+[x] update Kiro (to 252014 version)
+
+* Summary
+
+The objective is to create a Rails application that provides an initial base Rails framework, that can be extended for other application use-cases.
+The essence of the framework is to provide user authentication and user authorization via roles (RBAC).
+
+* Initial Configuration
+
+Currently, authentication is provided by standard Rails 8 session and password management.
+$ rails generate authentication
+
+- uses the flexbase Rails repository that already exists (themisto:/data2t/repo/jscodefix/flexbase/)
+  -- latest Rails version 8
+  -- data stored in an existing sqlite database
+
+* Design
+
+authorization is implmented as ?
+- compartmented by organizations
+- organizations contain owners and administators and users
+- new accounts are initiated using email invites by root, owners, and administators
+- new accounts can be manually created
+- the system shall be customizable and extensible
+
+** tech stack
+- Active Record
+- Rails templates
+- sqlite database
+- other Rails best-practices
+  -- Development Containers for Docker development
+  -- GitHub Actions CI
+  -- Rails 8 Thruster for deployment, in conjunction with Kamal
+- optional gems to use:
+  -- Authentication Zero (authentication-zero) for authentication
+  -- OmniAuth for multi-provider authentication (specifically Google and maybe Facebook)
+  -- Pundit or CanCanCan for authorization
+  -- ActiveAdmin for administator interfaces
+  -- Hotwire (Turbo and Stimulus) for interactive user interfaces
+  -- Simple Form for form creation
+  -- Kaminari for pagination
+  -- Dotenv-rails or Figaro for environment variables
+  -- LocalTime for user timezone display
+- advanced Rails best-practices
+  -- Solid Trifecta
+    --- Solid Cache
+    --- Solid Cable
+    --- Solid Queue
+
+
+* Development Process
+- in general, the development process is incremental and Agile
+- new features are introduced in a logical order as distinct and independent implementations (as is possible)
+- larger feature implementations are divided into smaller logical (git) commits
+- unit tests and smaller integration tests are developed in conjunction with new implementations; pseudo TDD is desireable
+- security patches and bug fixes should be prioritized
+
+* Coding Standards
+- implement Rails best practices
+- use RuboCop
+- optionally use common design patterns
+
+* Test Methodology
+
+- Rspec Unit Tests
+  -- When utilizing rspec-rails for testing Ruby on Rails applications, consider using companion gems:
+    --- factory_bot_rails
+    --- faker
+    --- capybara
+    --- selenium-webdriver
+    --- shoulda-matchers
+    --- database_cleaner
+    --- rails-controller-testing
+
+* Deployment Process
+- uses Kamal secrets and deployment hooks
+- Docker ready
+
+

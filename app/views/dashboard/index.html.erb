@@ -1,0 +1,18 @@
+<% content_for :title, "Dashboard - Flexbase" %>
+
+<div class="dashboard-container">
+  <div class="dashboard-welcome">
+    <h1>Welcome to Your Dashboard</h1>
+    <p>You are logged in as <%= Current.session.user.email_address %></p>
+  </div>
+
+  <div class="dashboard-content">
+    <div class="dashboard-widgets">
+      <!-- Extensible widget area for future features -->
+      <div class="widget">
+        <h2>Quick Actions</h2>
+        <p>Your dashboard is ready to be customized.</p>
+      </div>
+    </div>
+  </div>
+</div>
